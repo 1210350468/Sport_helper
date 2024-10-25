@@ -1,0 +1,158 @@
+<template>
+  <view class="register-container">
+    <!-- Logo 和标题 -->
+    <view class="logo-container">
+      <image :src="logo" class="logo"></image>
+      <text class="title">注册</text>
+    </view>
+
+    <!-- 注册表单 -->
+    <view class="form-container">
+      <!-- 输入账号 -->
+      <uni-easyinput
+        v-model="form.account"
+        placeholder="请输入账号"
+        clearable
+        class="input-field"
+      ></uni-easyinput>
+      <view class="spacing"></view>
+      <!-- 输入密码 -->
+      <uni-easyinput
+        v-model="form.password"
+        type="password"
+        placeholder="请输入密码"
+        clearable
+        class="input-field"
+      ></uni-easyinput>
+      <view class="spacing"></view>
+      <!-- 再次输入密码 -->
+      <uni-easyinput
+        v-model="form.confirmPassword"
+        type="password"
+        placeholder="请再次输入密码"
+        clearable
+        class="input-field"
+      ></uni-easyinput>
+      <view class="spacing"></view>
+      <!-- 注册按钮 -->
+      <button class="register-button" @click="submitRegister">注册</button>
+    </view>
+
+    <!-- 底部协议 -->
+    <view class="agreement">
+      登录/注册表示您已同意
+      <text class="link">《用户协议》</text> 和
+      <text class="link">《隐私政策》</text>
+    </view>
+  </view>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const logo = "/static/Squad1.png"; // Logo 图片路径
+
+const form = ref({
+  account: "",
+  password: "",
+  confirmPassword: "",
+});
+
+const submitRegister = () => {
+  if (
+    !form.value.account ||
+    !form.value.password ||
+    !form.value.confirmPassword
+  ) {
+    uni.showToast({
+      title: "请填写完整信息",
+      icon: "none",
+    });
+    return;
+  }
+  if (form.value.password !== form.value.confirmPassword) {
+    uni.showToast({
+      title: "两次密码输入不一致",
+      icon: "none",
+    });
+    return;
+  }
+  console.log("提交注册表单", form.value);
+  // 注册逻辑处理
+  
+  uni.navigateTo({url: '/pages/FirstLogin/FirstLogin'});
+};
+</script>
+
+<style lang="scss" scoped>
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  justify-content: flex-start; /* 内容靠上对齐 */
+}
+
+.logo-container {
+  margin-bottom: 30px; /* 向下移动 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.form-container {
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 30px; /* 圆角输入框 */
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.register-button {
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease; /* 添加平滑过渡效果 */
+
+  &.active {
+    background-color: #333; /* 按下时变暗 */
+  }
+}
+.agreement {
+  font-size: 12px;
+  color: #999;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.link {
+  color: #007bff;
+  cursor: pointer;
+}
+.spacing {
+  height: 20px;
+}
+</style>
