@@ -1,18 +1,27 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 if (!Array) {
-  const _easycom_uni_easyinput2 = common_vendor.resolveComponent("uni-easyinput");
-  _easycom_uni_easyinput2();
+  const _easycom_fui_input2 = common_vendor.resolveComponent("fui-input");
+  const _easycom_fui_icon2 = common_vendor.resolveComponent("fui-icon");
+  (_easycom_fui_input2 + _easycom_fui_icon2)();
 }
-const _easycom_uni_easyinput = () => "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js";
+const _easycom_fui_input = () => "../../node-modules/firstui-uni/firstui/fui-input/fui-input.js";
+const _easycom_fui_icon = () => "../../node-modules/firstui-uni/firstui/fui-icon/fui-icon.js";
 if (!Math) {
-  _easycom_uni_easyinput();
+  (_easycom_fui_input + _easycom_fui_icon)();
 }
 const logo = "/static/Squad1.png";
 const _sfc_main = {
   __name: "Login",
   setup(__props) {
     const isPressed = common_vendor.ref(false);
+    const password = common_vendor.ref(true);
+    const inputpwd = (e) => {
+      console.log(e);
+    };
+    const changepwd_vis = () => {
+      password.value = !password.value;
+    };
     const onButtonPress = () => {
       isPressed.value = true;
     };
@@ -43,23 +52,36 @@ const _sfc_main = {
         b: common_vendor.o(($event) => form.value.account = $event),
         c: common_vendor.p({
           placeholder: "请输入账号",
+          borderTop: true,
+          padding: ["20rpx", "32rpx"],
+          isFillet: true,
           clearable: true,
           modelValue: form.value.account
         }),
-        d: common_vendor.o(($event) => form.value.password = $event),
+        d: common_vendor.o(changepwd_vis),
         e: common_vendor.p({
+          name: password.value ? "invisible" : "visible",
+          color: "#B2B2B2",
+          size: 50
+        }),
+        f: common_vendor.o(inputpwd),
+        g: common_vendor.o(($event) => form.value.password = $event),
+        h: common_vendor.p({
+          borderTop: true,
+          padding: ["20rpx", "32rpx"],
           placeholder: "请输入密码",
-          type: "password",
+          password: password.value,
           clearable: true,
+          isFillet: true,
           modelValue: form.value.password
         }),
-        f: common_vendor.n({
+        i: common_vendor.n({
           active: isPressed.value
         }),
-        g: common_vendor.o(onButtonPress),
-        h: common_vendor.o(onButtonRelease),
-        i: common_vendor.o(submitLogin),
-        j: common_vendor.o(goRegister)
+        j: common_vendor.o(onButtonPress),
+        k: common_vendor.o(onButtonRelease),
+        l: common_vendor.o(submitLogin),
+        m: common_vendor.o(goRegister)
       };
     };
   }

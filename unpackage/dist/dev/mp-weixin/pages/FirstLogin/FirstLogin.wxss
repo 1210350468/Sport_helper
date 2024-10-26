@@ -8,7 +8,7 @@
 
 /* 上半部分: 浅灰背景 */
 .upper-section.data-v-e8fa868b {
-  background-color: #f5f5f5;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@
 
 /* 下半部分: 白色背景 */
 .lower-section.data-v-e8fa868b {
-  background-color: white;
+  background-color: #f5f5f5;
   flex: 1;
   padding: 20px;
 }
@@ -50,12 +50,7 @@
 
 /* 输入框样式 */
 .input-field.data-v-e8fa868b {
-  margin-bottom: 15px;
-  padding: 12px;
   border-radius: 30px;
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  width: 100%;
 }
 
 /* 按钮样式 */
@@ -81,9 +76,39 @@
 .spacing.data-v-e8fa868b {
   height: 20px;
 }
-.checkbox-group.data-v-e8fa868b {
-  margin-bottom: 20px;
-}
 .spacing.data-v-e8fa868b {
   height: 20px;
+}
+.uni-list.data-v-e8fa868b {
+  margin: 20px 0;
+}
+.uni-list-cell.data-v-e8fa868b {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.uni-list-cell-pd.data-v-e8fa868b {
+  padding-left: 15px;
+}
+.checkbox-container.data-v-e8fa868b {
+  display: flex;
+  align-items: center;
+}
+.checkbox-label.data-v-e8fa868b {
+  margin-left: 10px;
+  /* 调整文本与复选框之间的间距 */
+}
+.skip-container.data-v-e8fa868b {
+  background-color: #f5f5f5;
+  /* 下半部分背景颜色 */
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+}
+.skip-button.data-v-e8fa868b {
+  background-color: transparent;
+  color: #999;
+  border: none;
+  font-size: 10px;
 }

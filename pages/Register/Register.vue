@@ -9,30 +9,73 @@
     <!-- 注册表单 -->
     <view class="form-container">
       <!-- 输入账号 -->
-      <uni-easyinput
+      <!-- <uni-easyinput
         v-model="form.account"
         placeholder="请输入账号"
         clearable
         class="input-field"
-      ></uni-easyinput>
+      ></uni-easyinput> -->
+	  <fui-input
+        placeholder="请输入账号"
+        borderTop
+        :padding="['20rpx', '32rpx']"
+        v-model="form.account"
+        :isFillet="true"
+        clearable
+      ></fui-input>
+
       <view class="spacing"></view>
       <!-- 输入密码 -->
-      <uni-easyinput
+      <!-- <uni-easyinput
         v-model="form.password"
         type="password"
         placeholder="请输入密码"
         clearable
         class="input-field"
-      ></uni-easyinput>
+      ></uni-easyinput> -->
+	  <fui-input
+        borderTop
+        :padding="['20rpx', '32rpx']"
+        placeholder="请输入密码"
+        :password="password"
+        clearable
+        v-model="form.password"
+        :isFillet="true"
+        @input="inputpwd"
+      >
+        <fui-icon
+          :name="password ? 'invisible' : 'visible'"
+          color="#B2B2B2"
+          :size="50"
+          @click="changepwd_vis"
+        ></fui-icon>
+      </fui-input>
       <view class="spacing"></view>
       <!-- 再次输入密码 -->
-      <uni-easyinput
+      <!-- <uni-easyinput
         v-model="form.confirmPassword"
         type="password"
         placeholder="请再次输入密码"
         clearable
         class="input-field"
-      ></uni-easyinput>
+      ></uni-easyinput> -->
+	  <fui-input
+        borderTop
+        :padding="['20rpx', '32rpx']"
+        placeholder="请再次输入密码"
+        :password="password_confirm"
+        clearable
+        v-model="form.confirmPassword"
+        :isFillet="true"
+        @input="inputpwd_confirm"
+      >
+        <fui-icon
+          :name="password_confirm ? 'invisible' : 'visible'"
+          color="#B2B2B2"
+          :size="50"
+          @click="changepwd_vis_confirm"
+        ></fui-icon>
+      </fui-input>
       <view class="spacing"></view>
       <!-- 注册按钮 -->
       <button class="register-button" @click="submitRegister">注册</button>
@@ -49,7 +92,20 @@
 
 <script setup>
 import { ref } from "vue";
-
+const password = ref(true); // 密码是否可见
+const password_confirm = ref(true); // 密码是否可见
+const inputpwd = (e) => {
+  console.log(e);
+};
+const changepwd_vis = () => {
+  password.value = !password.value;
+};
+const inputpwd_confirm = (e) => {
+  console.log(e);
+};
+const changepwd_vis_confirm = () => {
+  password_confirm.value = !password_confirm.value;
+};
 const logo = "/static/Squad1.png"; // Logo 图片路径
 
 const form = ref({
@@ -79,8 +135,8 @@ const submitRegister = () => {
   }
   console.log("提交注册表单", form.value);
   // 注册逻辑处理
-  
-  uni.navigateTo({url: '/pages/FirstLogin/FirstLogin'});
+
+  uni.navigateTo({ url: "/pages/FirstLogin/FirstLogin" });
 };
 </script>
 
@@ -120,11 +176,7 @@ const submitRegister = () => {
 }
 
 .input-field {
-  margin-bottom: 15px;
-  padding: 12px;
-  border-radius: 30px; /* 圆角输入框 */
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
+  border-radius: 25px; /* 圆角输入框 */
 }
 
 .register-button {
@@ -144,7 +196,7 @@ const submitRegister = () => {
 .agreement {
   font-size: 12px;
   color: #999;
-  margin-top: 20px;
+  margin-top: 155px;
   text-align: center;
 }
 
@@ -153,6 +205,6 @@ const submitRegister = () => {
   cursor: pointer;
 }
 .spacing {
-  height: 20px;
+  height: 25px;
 }
 </style>

@@ -1,30 +1,111 @@
+<!-- 本示例未包含完整css，获取外链css请参考上文，在hello uni-app项目中查看 -->
 <template>
-	<view class="container">
-		
-		<view class="intro">本项目已包含uni ui组件，无需import和注册，可直接使用。在代码区键入字母u，即可通过代码助手列出所有可用组件。光标置于组件名称处按F1，即可查看组件文档。</view>
-		<text class="intro">详见：</text>
-		<uni-link :href="href" :text="href"></uni-link>
-		<image src="/static/程序logo.png" mode=""></image>
-	</view>
+  <view>
+    <view class="uni-padding-wrap uni-common-mt">
+      <view class="uni-title uni-common-mt">默认样式</view>
+      <view>
+        <checkbox-group>
+          <label> <checkbox value="cb" checked="true" />选中 </label>
+          <label> <checkbox value="cb" />未选中 </label>
+        </checkbox-group>
+      </view>
+      <view class="uni-title uni-common-mt">不同颜色和尺寸的checkbox</view>
+      <view>
+        <checkbox-group>
+          <label>
+            <checkbox
+              value="cb"
+              checked="true"
+              color="#FFCC33"
+              style="transform: scale(0.7)"
+            />选中
+          </label>
+          <label>
+            <checkbox
+              value="cb"
+              color="#FFCC33"
+              style="transform: scale(0.7)"
+            />未选中
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+
+    <view class="uni-padding-wrap">
+      <view class="uni-title uni-common-mt">
+        推荐展示样式
+        <text>\n使用 uni-list 布局</text>
+      </view>
+    </view>
+    <view class="uni-list">
+      <checkbox-group @change="checkboxChange">
+        <label
+          class="uni-list-cell uni-list-cell-pd"
+          v-for="item in items"
+          :key="item.value"
+        >
+          <view>
+            <checkbox :value="item.value" :checked="item.checked" />
+          </view>
+          <view>{{ item.name }}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
 </template>
-
 <script>
-	export default {
-		data() {
-			return {
-				href: 'https://uniapp.dcloud.io/component/README?id=uniui'
-			}
-		},
-		methods: {
-
-		}
-	}
+export default {
+  data() {
+    return {
+      title: "checkbox 复选框",
+      items: [
+        {
+          value: "USA",
+          name: "美国",
+        },
+        {
+          value: "CHN",
+          name: "中国",
+          checked: "true",
+        },
+        {
+          value: "BRA",
+          name: "巴西",
+        },
+        {
+          value: "JPN",
+          name: "日本",
+        },
+        {
+          value: "ENG",
+          name: "英国",
+        },
+        {
+          value: "FRA",
+          name: "法国",
+        },
+      ],
+    };
+  },
+  methods: {
+    checkboxChange: function (e) {
+      var items = this.items,
+        values = e.detail.value;
+      for (var i = 0, lenI = items.length; i < lenI; ++i) {
+        const item = items[i];
+        if (values.includes(item.value)) {
+          this.$set(item, "checked", true);
+        } else {
+          this.$set(item, "checked", false);
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style>
-	.container {
-		padding: 20px;
-		font-size: 14px;
-		line-height: 24px;
-	}
+.uni-list-cell {
+  justify-content: flex-start;
+}
 </style>
