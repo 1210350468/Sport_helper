@@ -1,1 +1,0 @@
-<view class="input-container data-v-0d70737b"><input type="text" placeholder="{{a}}" class="rounded-input data-v-0d70737b" value="{{b}}" bindinput="{{c}}"/><image wx:if="{{d}}" src="{{e}}" alt="Clear" class="clear-icon data-v-0d70737b" bindtap="{{f}}"/></view>
