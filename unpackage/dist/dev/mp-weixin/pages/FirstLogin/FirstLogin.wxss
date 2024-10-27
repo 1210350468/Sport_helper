@@ -110,7 +110,8 @@
   background-color: transparent;
   color: #999;
   border: none;
-  font-size: 10px;
+  text-align: center;
+  font-size: 14px;
 }
 .fui-section__title.data-v-e8fa868b {
   margin-left: 32rpx;
@@ -132,4 +133,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.back-icon.data-v-e8fa868b {
+  width: 24px;
+  /* 根据需要调整大小 */
+  height: 24px;
+  margin-left: 20px;
+  /* 调整位置 */
+  margin-top: 10px;
+  transition: opacity 0.3s;
+}
+.back-button:hover .back-icon.data-v-e8fa868b {
+  opacity: 0.7;
 }

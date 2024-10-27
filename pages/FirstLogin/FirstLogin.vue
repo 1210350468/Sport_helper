@@ -1,5 +1,13 @@
 <template>
   <view class="container">
+    <!-- 返回按钮 -->
+    <img
+      v-if="step > 1"
+      src="/static/back/返回 (2).png"
+      alt="返回"
+      class="back-icon"
+      @click="prevStep"
+    />
     <!-- 上半部分: 浅灰背景 -->
     <view class="upper-section">
       <image :src="logo" class="logo"></image>
@@ -181,7 +189,11 @@ const nextStep = () => {
     step.value++;
   }
 };
-
+const prevStep = () => {
+  if (step.value > 1) {
+    step.value--;
+  }
+};
 const submitForm = () => {
   console.log("表单提交", form.value);
 };
@@ -308,7 +320,8 @@ const submitForm = () => {
   background-color: transparent;
   color: #999;
   border: none;
-  font-size: 10px;
+  text-align: center;
+  font-size: 14px;
 }
 .fui-section__title {
   margin-left: 32rpx;
@@ -333,5 +346,16 @@ const submitForm = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.back-icon {
+  width: 24px; /* 根据需要调整大小 */
+  height: 24px;
+  margin-left: 20px; /* 调整位置 */
+  margin-top: 10px;
+  transition: opacity 0.3s;
+}
+
+.back-button:hover .back-icon {
+  opacity: 0.7;
 }
 </style>
